@@ -1,8 +1,10 @@
-import 'package:scan_pro/src/controllers/controllers/config_controller.dart';
-import 'package:scan_pro/src/controllers/controllers/home_page_controller.dart';
+import 'package:scan_pro/src/controllers/config_controller.dart';
+import 'package:scan_pro/src/controllers/images_controller.dart';
+import 'package:scan_pro/src/controllers/main_page_controller.dart';
 
 class Base {
   Base._();
   static final configController = ConfigController();
-  static final himeController = HomePageController();
+  static final mainPageController = MainPageController();
+  static final imagesController = ImagesController();
 }
