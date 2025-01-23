@@ -147,16 +147,17 @@ class MainPage extends StatelessWidget {
                   ),
 
                   /// >>>>>>>>>>>>>>>>>>>> END <<<<<<<<<<<<<<<<<<
-                  /*               ElevatedButton(
+                  ElevatedButton(
                       onPressed: () async {
-                        final pics = await Base.imagesController.scanDocuments();
+                        final pics =
+                            await Base.imagesController.scanDocuments();
                         if (pics != null && pics.isNotEmpty) {
                           Base.imagesController.pictures.value = pics;
                         }
                       },
                       child: const Text("Add Pictures")),
                   for (var picture in Base.imagesController.pictures)
-                    Image.file(File(picture)), */
+                    Image.file(File(picture)),
                 ],
               ),
             ),
