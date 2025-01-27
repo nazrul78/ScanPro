@@ -132,7 +132,7 @@ class MainPage extends StatelessWidget {
                                 ),
                                 SizedBox(height: 5),
                                 const Text(
-                                  'Smart Scan',
+                                  'Import Images',
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.white,
@@ -168,6 +168,17 @@ class MainPage extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10))),
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'Recents',
+                      style: TextStyle(color: AppTheme.white),
+                    ),
+                  )
+                ],
+              ),
             )
           ],
         ),
