@@ -19,168 +19,230 @@ class MainPage extends StatelessWidget {
       body: Obx(
         () => Column(
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
-              child: Column(
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        color: AppTheme.appThemeColor,
-                        // color: Colors.blueGrey,
-                        height: 150,
-                        child: GridView.count(
-                          primary: false,
-                          padding: const EdgeInsets.all(20),
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          crossAxisCount: 3,
-                          children: <Widget>[
-                            Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(100)),
-                                  child: Container(
-                                    padding: EdgeInsets.all(1),
-                                    color: AppTheme.appThemeColor2,
-                                    //  color: Colors.blueGrey[400],
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(100)),
-                                      child: Container(
-                                        //margin: EdgeInsets.all(3),
-                                        padding: EdgeInsets.all(10),
-                                        // color: Colors.blueGrey,
-                                        color: AppTheme.appThemeColor,
-                                        child: Icon(
-                                          Icons.document_scanner_outlined,
-                                          size: 30,
-                                          color: Colors.tealAccent,
+            Expanded(
+              flex: 0,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          color: AppTheme.appThemeColor,
+                          // color: Colors.blueGrey,
+                          height: 110,
+                          child: GridView.count(
+                            primary: false,
+                            padding: const EdgeInsets.all(20),
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            crossAxisCount: 3,
+                            children: <Widget>[
+                              Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(100)),
+                                    child: Container(
+                                      padding: EdgeInsets.all(1),
+                                      color: AppTheme.appThemeColor2,
+                                      //  color: Colors.blueGrey[400],
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(100)),
+                                        child: Container(
+                                          //margin: EdgeInsets.all(3),
+                                          padding: EdgeInsets.all(10),
+                                          // color: Colors.blueGrey,
+                                          color: AppTheme.appThemeColor,
+                                          child: Icon(
+                                            Icons.document_scanner_outlined,
+                                            size: 30,
+                                            color: Colors.tealAccent,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 5),
-                                const Text(
-                                  'Smart Scan',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white,
+                                  SizedBox(height: 5),
+                                  const Text(
+                                    'Smart Scan',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(100)),
-                                  child: Container(
-                                    padding: EdgeInsets.all(1),
-                                    color: AppTheme.appThemeColor2,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(100)),
-                                      child: Container(
-                                        //margin: EdgeInsets.all(3),
-                                        padding: EdgeInsets.all(10),
-                                        color: AppTheme.appThemeColor,
-                                        child: Icon(
-                                          Icons.picture_as_pdf_outlined,
-                                          size: 30,
-                                          color: Colors.greenAccent,
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(100)),
+                                    child: Container(
+                                      padding: EdgeInsets.all(1),
+                                      color: AppTheme.appThemeColor2,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(100)),
+                                        child: Container(
+                                          //margin: EdgeInsets.all(3),
+                                          padding: EdgeInsets.all(10),
+                                          color: AppTheme.appThemeColor,
+                                          child: Icon(
+                                            Icons.picture_as_pdf_outlined,
+                                            size: 30,
+                                            color: Colors.greenAccent,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 5),
-                                const Text(
-                                  'PDF Tools',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white,
+                                  SizedBox(height: 5),
+                                  const Text(
+                                    'PDF Tools',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(100)),
-                                  child: Container(
-                                    padding: EdgeInsets.all(1),
-                                    color: AppTheme.appThemeColor2,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(100)),
-                                      child: Container(
-                                        //margin: EdgeInsets.all(3),
-                                        padding: EdgeInsets.all(10),
-                                        color: AppTheme.appThemeColor,
-                                        child: Icon(
-                                          Icons.photo_camera_back,
-                                          size: 30,
-                                          color: Colors.lightBlueAccent,
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(100)),
+                                    child: Container(
+                                      padding: EdgeInsets.all(1),
+                                      color: AppTheme.appThemeColor2,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(100)),
+                                        child: Container(
+                                          //margin: EdgeInsets.all(3),
+                                          padding: EdgeInsets.all(10),
+                                          color: AppTheme.appThemeColor,
+                                          child: Icon(
+                                            Icons.photo_camera_back,
+                                            size: 30,
+                                            color: Colors.lightBlueAccent,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 5),
-                                const Text(
-                                  'Import Images',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white,
+                                  SizedBox(height: 5),
+                                  const Text(
+                                    'Import Images',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
 
-                  /// >>>>>>>>>>>>>>>>>>>> END <<<<<<<<<<<<<<<<<<
-                  ElevatedButton(
-                      onPressed: () async {
-                        final pics =
-                            await Base.imagesController.scanDocuments();
-                        if (pics != null && pics.isNotEmpty) {
-                          Base.imagesController.pictures.value = pics;
-                        }
-                      },
-                      child: const Text("Add Pictures")),
-                  for (var picture in Base.imagesController.pictures)
-                    Image.file(File(picture)),
-                ],
+                    /// >>>>>>>>>>>>>>>>>>>> END <<<<<<<<<<<<<<<<<<
+                    // ElevatedButton(
+                    //     onPressed: () async {
+                    //       final pics =
+                    //           await Base.imagesController.scanDocuments();
+                    //       if (pics != null && pics.isNotEmpty) {
+                    //         Base.imagesController.pictures.value = pics;
+                    //       }
+                    //     },
+                    //     child: const Text("Add Pictures")),
+                    for (var picture in Base.imagesController.pictures)
+                      Image.file(File(picture)),
+                  ],
+                ),
               ),
             ),
-            Container(
-              height: 500,
-              decoration: BoxDecoration(
-                  color: AppTheme.appThemeColor2,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10))),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      'Recents',
-                      style: TextStyle(color: AppTheme.white),
+            Expanded(
+              flex: 1,
+              child: Container(
+                // height: 500,
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                decoration: BoxDecoration(
+                    color: AppTheme.appThemeColor2,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10))),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Recents',
+                          style: TextStyle(
+                              color: AppTheme.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'View All',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 12),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.grey,
+                              size: 12,
+                            )
+                          ],
+                        ),
+                      ],
                     ),
-                  )
-                ],
+                    Container(
+                      //  color: Colors.amber,
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 50,
+                            width: 50,
+                            color: Colors.blue,
+                          ),
+                          Text(
+                            'Hello',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             )
           ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final pics = await Base.imagesController.scanDocuments();
+          if (pics != null && pics.isNotEmpty) {
+            Base.imagesController.pictures.value = pics;
+          }
+          // setState(() {
+          //   index = (index + 1) % customizations.length;
+          // });
+        },
+        // foregroundColor: customizations[index].$1,
+        // backgroundColor: customizations[index].$2,
+        // shape: customizations[index].$3,
+        backgroundColor: Colors.teal,
+        child: const Icon(
+          Icons.camera_alt,
+          size: 35,
+          color: Colors.white,
         ),
       ),
     );
