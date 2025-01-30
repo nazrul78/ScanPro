@@ -306,9 +306,6 @@ class MainPage extends StatelessWidget {
                           height: 35,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                padding: EdgeInsetsDirectional.symmetric(
-                                  horizontal: 42,
-                                ),
                                 backgroundColor: Colors.blueGrey[800]),
                             onPressed: () {},
                             child: Text('Share',
@@ -319,9 +316,6 @@ class MainPage extends StatelessWidget {
                           height: 35,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                padding: EdgeInsetsDirectional.symmetric(
-                                  horizontal: 42,
-                                ),
                                 backgroundColor: Colors.blueGrey[800]),
                             onPressed: () {},
                             child: Text('To Word',
@@ -332,9 +326,6 @@ class MainPage extends StatelessWidget {
                           height: 35,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                padding: EdgeInsetsDirectional.symmetric(
-                                  horizontal: 42,
-                                ),
                                 backgroundColor: Colors.blueGrey[800]),
                             onPressed: () {},
                             child: Text('View',
