@@ -390,6 +390,43 @@ class MainPage extends StatelessWidget {
           color: Colors.white,
         ),
       ),
+
+      bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (int index) {
+          // setState(() {
+          //   currentPageIndex = index;
+          // });
+        },
+        indicatorColor: Colors.teal,
+        // surfaceTintColor: Colors.amber,
+
+        backgroundColor: AppTheme.appThemeColor,
+
+        //height: 80,
+        // selectedIndex: currentPageIndex,
+        selectedIndex: 0,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home_outlined,
+              color: Colors.white,
+            ),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Badge(child: Icon(Icons.notifications_sharp)),
+            label: 'Notifications',
+          ),
+          NavigationDestination(
+            icon: Badge(
+              label: Text('2'),
+              child: Icon(Icons.messenger_sharp),
+            ),
+            label: 'Messages',
+          ),
+        ],
+      ),
     );
   }
 }
