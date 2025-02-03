@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -391,41 +392,47 @@ class MainPage extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (int index) {
-          // setState(() {
-          //   currentPageIndex = index;
-          // });
-        },
-        indicatorColor: Colors.teal,
-        // surfaceTintColor: Colors.amber,
+      bottomNavigationBar: Obx(
+        () => NavigationBar(
+          onDestinationSelected: (int index) {
+            Base.mainPageController.currentPageIndex.value = index;
+            log('${Base.mainPageController.currentPageIndex.value}');
+            // setState(() {
+            //   currentPageIndex = index;
+            // });
+          },
+          indicatorColor: Colors.teal,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+          // surfaceTintColor: Colors.amber,
 
-        backgroundColor: AppTheme.appThemeColor,
+          backgroundColor: AppTheme.appThemeColor,
 
-        //height: 80,
-        // selectedIndex: currentPageIndex,
-        selectedIndex: 0,
-        destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(
-              Icons.home_outlined,
-              color: Colors.white,
+          height: 50,
+          // selectedIndex: currentPageIndex,
+          selectedIndex: Base.mainPageController.currentPageIndex.value,
+          destinations: const <Widget>[
+            NavigationDestination(
+              // selectedIcon: Icon(Icons.home),
+              icon: Icon(
+                Icons.home,
+                //color: Colors.white,
+              ),
+              label: 'Home',
             ),
-            label: 'Home',
-          ),
-          NavigationDestination(
-            icon: Badge(child: Icon(Icons.notifications_sharp)),
-            label: 'Notifications',
-          ),
-          NavigationDestination(
-            icon: Badge(
-              label: Text('2'),
-              child: Icon(Icons.messenger_sharp),
+            NavigationDestination(
+              icon: Icon(Icons.notifications_sharp),
+              label: 'Notifications',
             ),
-            label: 'Messages',
-          ),
-        ],
+            NavigationDestination(
+              icon: Icon(Icons.messenger_sharp),
+              // icon: Badge(
+              //   label: Text('2'),
+              //   child: Icon(Icons.messenger_sharp),
+              // ),
+              label: 'Messages',
+            ),
+          ],
+        ),
       ),
     );
   }
