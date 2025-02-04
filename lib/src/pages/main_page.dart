@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:scan_pro/src/base/base.dart';
 import 'package:scan_pro/src/pages/document_page.dart';
 import 'package:scan_pro/src/pages/home_page.dart';
+import 'package:scan_pro/src/pages/image_view_page.dart';
 import 'package:scan_pro/src/pages/person_page.dart';
 import '../config/app_theme.dart';
 
@@ -28,6 +29,9 @@ class MainPage extends StatelessWidget {
                       final pics = await Base.imagesController.scanDocuments();
                       if (pics != null && pics.isNotEmpty) {
                         Base.imagesController.pictures.value = pics;
+                        Get.to(ImageViewPage());
+
+                        log('file');
                       }
                       // setState(() {
                       //   index = (index + 1) % customizations.length;
