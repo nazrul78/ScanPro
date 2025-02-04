@@ -1,437 +1,90 @@
 import 'dart:developer';
-import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scan_pro/src/base/base.dart';
-
+import 'package:scan_pro/src/pages/document_page.dart';
+import 'package:scan_pro/src/pages/home_page.dart';
+import 'package:scan_pro/src/pages/person_page.dart';
 import '../config/app_theme.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
 
-  // List<String> _pictures = [];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppTheme.appThemeColor,
-      // appBar: AppBar(
-      //   title: const Text('ScanPro'),
-      // ),
-      body: Obx(
-        () => Column(
-          children: [
-            Expanded(
-              flex: 0,
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
-                child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        Container(
-                          color: AppTheme.appThemeColor,
-                          // color: Colors.blueGrey,
-                          height: 110,
-                          child: GridView.count(
-                            primary: false,
-                            padding: const EdgeInsets.all(20),
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            crossAxisCount: 3,
-                            children: <Widget>[
-                              Column(
-                                children: [
-                                  ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(100)),
-                                    child: Container(
-                                      padding: EdgeInsets.all(1),
-                                      color: AppTheme.appThemeColor2,
-                                      //  color: Colors.blueGrey[400],
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(100)),
-                                        child: Container(
-                                          //margin: EdgeInsets.all(3),
-                                          padding: EdgeInsets.all(10),
-                                          // color: Colors.blueGrey,
-                                          color: AppTheme.appThemeColor,
-                                          child: Icon(
-                                            Icons.document_scanner_outlined,
-                                            size: 30,
-                                            color: Colors.tealAccent,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  const Text(
-                                    'Smart Scan',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(100)),
-                                    child: Container(
-                                      padding: EdgeInsets.all(1),
-                                      color: AppTheme.appThemeColor2,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(100)),
-                                        child: Container(
-                                          //margin: EdgeInsets.all(3),
-                                          padding: EdgeInsets.all(10),
-                                          color: AppTheme.appThemeColor,
-                                          child: Icon(
-                                            Icons.picture_as_pdf_outlined,
-                                            size: 30,
-                                            color: Colors.greenAccent,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  const Text(
-                                    'PDF Tools',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  ClipRRect(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(100)),
-                                    child: Container(
-                                      padding: EdgeInsets.all(1),
-                                      color: AppTheme.appThemeColor2,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(100)),
-                                        child: Container(
-                                          //margin: EdgeInsets.all(3),
-                                          padding: EdgeInsets.all(10),
-                                          color: AppTheme.appThemeColor,
-                                          child: Icon(
-                                            Icons.photo_camera_back,
-                                            size: 30,
-                                            color: Colors.lightBlueAccent,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  const Text(
-                                    'Import Images',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+    return Obx(
+      () => Scaffold(
+        backgroundColor: AppTheme.appThemeColor,
+        body: Base.mainPageController.currentPageIndex.value == 0
+            ? HomePage()
+            : Base.mainPageController.currentPageIndex.value == 1
+                ? DocumentPage()
+                : PersonPage(),
+        floatingActionButton:
+            Base.mainPageController.currentPageIndex.value == 0
+                ? FloatingActionButton(
+                    onPressed: () async {
+                      final pics = await Base.imagesController.scanDocuments();
+                      if (pics != null && pics.isNotEmpty) {
+                        Base.imagesController.pictures.value = pics;
+                      }
+                      // setState(() {
+                      //   index = (index + 1) % customizations.length;
+                      // });
+                    },
+                    // foregroundColor: customizations[index].$1,
+                    // backgroundColor: customizations[index].$2,
+                    // shape: customizations[index].$3,
+                    backgroundColor: Colors.teal,
+                    child: const Icon(
+                      Icons.camera_alt,
+                      size: 35,
+                      color: Colors.white,
                     ),
+                  )
+                : null,
+        bottomNavigationBar: Obx(
+          () => NavigationBar(
+            onDestinationSelected: (int index) {
+              Base.mainPageController.currentPageIndex.value = index;
+              log('${Base.mainPageController.currentPageIndex.value}');
+              // setState(() {
+              //   currentPageIndex = index;
+              // });
+            },
+            indicatorColor: Colors.teal,
+            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+            // surfaceTintColor: Colors.amber,
 
-                    /// >>>>>>>>>>>>>>>>>>>> END <<<<<<<<<<<<<<<<<<
-                    // ElevatedButton(
-                    //     onPressed: () async {
-                    //       final pics =
-                    //           await Base.imagesController.scanDocuments();
-                    //       if (pics != null && pics.isNotEmpty) {
-                    //         Base.imagesController.pictures.value = pics;
-                    //       }
-                    //     },
-                    //     child: const Text("Add Pictures")),
-                    for (var picture in Base.imagesController.pictures)
-                      Image.file(File(picture)),
-                  ],
+            backgroundColor: AppTheme.appThemeColor,
+
+            height: 50,
+            // selectedIndex: currentPageIndex,
+            selectedIndex: Base.mainPageController.currentPageIndex.value,
+            destinations: const <Widget>[
+              NavigationDestination(
+                // selectedIcon: Icon(Icons.home),
+                icon: Icon(
+                  Icons.home,
+                  //color: Colors.white,
                 ),
+                label: 'Home',
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                // height: 500,
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                decoration: BoxDecoration(
-                    color: AppTheme.appThemeColor2,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10))),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Recents',
-                          style: TextStyle(
-                              color: AppTheme.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17),
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'View All',
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 12),
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.grey,
-                              size: 12,
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-
-                    ListTile(
-                      contentPadding: EdgeInsets.all(5),
-                      leading: Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.lightBlueAccent,
-                        ),
-                      ),
-                      title: Text(
-                        'ScanPro 29-01-2025',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      subtitle: Text(
-                        '2025-01-29 14:13',
-                        style: TextStyle(color: Colors.grey, fontSize: 12),
-                      ),
-                      trailing: Icon(Icons.check_box_outline_blank,
-                          color: Colors.grey[700]),
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          height: 35,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blueGrey[800]),
-                            onPressed: () {},
-                            child: Text('Share',
-                                style: TextStyle(color: Colors.white)),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 35,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blueGrey[800]),
-                            onPressed: () {},
-                            child: Text('To Word',
-                                style: TextStyle(color: Colors.white)),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 35,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blueGrey[800]),
-                            onPressed: () {},
-                            child: Text('View',
-                                style: TextStyle(color: Colors.white)),
-                          ),
-                        ),
-                        // TextButton(
-                        //   style: TextButton.styleFrom(
-                        //     foregroundColor: Colors.red,
-                        //   ),
-                        //   onPressed: () {},
-                        //   child: Text('TextButton svs'),
-                        // )
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Divider(
-                      // height: 10,
-                      thickness: 1,
-                      color: Colors.blueGrey[800],
-                      indent: 5,
-                      endIndent: 5,
-                    ),
-
-                    ListTile(
-                      contentPadding: EdgeInsets.all(5).copyWith(top: 0),
-                      leading: Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.amberAccent,
-                        ),
-                      ),
-                      title: Text(
-                        'ScanPro 30-01-2025',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      subtitle: Text(
-                        '2025-01-30 14:13',
-                        style: TextStyle(color: Colors.grey, fontSize: 12),
-                      ),
-                      trailing: Icon(Icons.check_box_outline_blank,
-                          color: Colors.grey[700]),
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          height: 35,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blueGrey[800]),
-                            onPressed: () {},
-                            child: Text('Share',
-                                style: TextStyle(color: Colors.white)),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 35,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blueGrey[800]),
-                            onPressed: () {},
-                            child: Text('To Word',
-                                style: TextStyle(color: Colors.white)),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 35,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blueGrey[800]),
-                            onPressed: () {},
-                            child: Text('View',
-                                style: TextStyle(color: Colors.white)),
-                          ),
-                        ),
-                        // TextButton(
-                        //   style: TextButton.styleFrom(
-                        //     foregroundColor: Colors.red,
-                        //   ),
-                        //   onPressed: () {},
-                        //   child: Text('TextButton svs'),
-                        // )
-                      ],
-                    ),
-
-                    // Container(
-                    //   //  color: Colors.amber,
-                    //   child: Row(
-                    //     children: [
-                    //       Container(
-                    //         height: 50,
-                    //         width: 50,
-                    //         decoration: BoxDecoration(
-                    //           borderRadius: BorderRadius.circular(5),
-                    //           color: Colors.lightBlueAccent,
-                    //         ),
-                    //       ),
-                    //       SizedBox(width: 10),
-
-                    //       Text(
-                    //         'Hello',
-                    //         style: TextStyle(color: Colors.white),
-                    //       )
-                    //     ],
-                    //   ),
-                    // )
-                  ],
-                ),
+              NavigationDestination(
+                icon: Icon(Icons.edit_document),
+                label: 'Notifications',
               ),
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final pics = await Base.imagesController.scanDocuments();
-          if (pics != null && pics.isNotEmpty) {
-            Base.imagesController.pictures.value = pics;
-          }
-          // setState(() {
-          //   index = (index + 1) % customizations.length;
-          // });
-        },
-        // foregroundColor: customizations[index].$1,
-        // backgroundColor: customizations[index].$2,
-        // shape: customizations[index].$3,
-        backgroundColor: Colors.teal,
-        child: const Icon(
-          Icons.camera_alt,
-          size: 35,
-          color: Colors.white,
-        ),
-      ),
-
-      bottomNavigationBar: Obx(
-        () => NavigationBar(
-          onDestinationSelected: (int index) {
-            Base.mainPageController.currentPageIndex.value = index;
-            log('${Base.mainPageController.currentPageIndex.value}');
-            // setState(() {
-            //   currentPageIndex = index;
-            // });
-          },
-          indicatorColor: Colors.teal,
-          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-          // surfaceTintColor: Colors.amber,
-
-          backgroundColor: AppTheme.appThemeColor,
-
-          height: 50,
-          // selectedIndex: currentPageIndex,
-          selectedIndex: Base.mainPageController.currentPageIndex.value,
-          destinations: const <Widget>[
-            NavigationDestination(
-              // selectedIcon: Icon(Icons.home),
-              icon: Icon(
-                Icons.home,
-                //color: Colors.white,
+              NavigationDestination(
+                icon: Icon(Icons.person),
+                // icon: Badge(
+                //   label: Text('2'),
+                //   child: Icon(Icons.messenger_sharp),
+                // ),
+                label: 'Messages',
               ),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.notifications_sharp),
-              label: 'Notifications',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.messenger_sharp),
-              // icon: Badge(
-              //   label: Text('2'),
-              //   child: Icon(Icons.messenger_sharp),
-              // ),
-              label: 'Messages',
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
