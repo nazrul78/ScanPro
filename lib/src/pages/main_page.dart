@@ -29,7 +29,7 @@ class MainPage extends StatelessWidget {
                       final pics = await Base.imagesController.scanDocuments();
                       if (pics != null && pics.isNotEmpty) {
                         Base.imagesController.pictures.value = pics;
-                        Get.to(ImageViewPage());
+                        Get.to(ImageViewPage(pictures: pics));
 
                         log('file');
                       }
