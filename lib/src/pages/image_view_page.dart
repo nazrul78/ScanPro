@@ -113,6 +113,46 @@ class ImageViewPage extends StatelessWidget {
             // ),
             label: 'Share',
           ),
+          NavigationDestination(
+            icon: Icon(Icons.share),
+            // icon: Badge(
+            //   label: Text('2'),
+            //   child: Icon(Icons.messenger_sharp),
+            // ),
+            label: 'Share',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.share),
+            // icon: Badge(
+            //   label: Text('2'),
+            //   child: Icon(Icons.messenger_sharp),
+            // ),
+            label: 'Share',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.share),
+            // icon: Badge(
+            //   label: Text('2'),
+            //   child: Icon(Icons.messenger_sharp),
+            // ),
+            label: 'Share',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.share),
+            // icon: Badge(
+            //   label: Text('2'),
+            //   child: Icon(Icons.messenger_sharp),
+            // ),
+            label: 'Share',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.share),
+            // icon: Badge(
+            //   label: Text('2'),
+            //   child: Icon(Icons.messenger_sharp),
+            // ),
+            label: 'Share',
+          ),
         ],
       ),
     );
