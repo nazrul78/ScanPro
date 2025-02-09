@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:scan_pro/src/config/app_theme.dart';
@@ -57,6 +59,8 @@ class ImageViewPage extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return SizedBox(
             height: 500,
+
+            //child: Image.file(File(pictures[index]))
             //color: Colors.amber,
             // child: Center(child: Text('Entry /* ${pictures[index]} */')),
             child: PhotoView(
@@ -65,7 +69,11 @@ class ImageViewPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(color: Colors.grey, width: 1)),
               //imageProvider: AssetImage("assets/large-image.jpg"),
-              imageProvider: AssetImage(pictures[index]),
+              // imageProvider: AssetImage(pictures[0]),
+              imageProvider: FileImage(File(pictures[index])),
+              // imageProvider: NetworkImage(
+              //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s'),
+              // imageProvider: AssetImage(Base.imagesController.pictures.first),
               initialScale: PhotoViewComputedScale.contained * 0.8,
             ),
           );
@@ -113,46 +121,46 @@ class ImageViewPage extends StatelessWidget {
             // ),
             label: 'Share',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.share),
-            // icon: Badge(
-            //   label: Text('2'),
-            //   child: Icon(Icons.messenger_sharp),
-            // ),
-            label: 'Share',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.share),
-            // icon: Badge(
-            //   label: Text('2'),
-            //   child: Icon(Icons.messenger_sharp),
-            // ),
-            label: 'Share',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.share),
-            // icon: Badge(
-            //   label: Text('2'),
-            //   child: Icon(Icons.messenger_sharp),
-            // ),
-            label: 'Share',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.share),
-            // icon: Badge(
-            //   label: Text('2'),
-            //   child: Icon(Icons.messenger_sharp),
-            // ),
-            label: 'Share',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.share),
-            // icon: Badge(
-            //   label: Text('2'),
-            //   child: Icon(Icons.messenger_sharp),
-            // ),
-            label: 'Share',
-          ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.share),
+          //   // icon: Badge(
+          //   //   label: Text('2'),
+          //   //   child: Icon(Icons.messenger_sharp),
+          //   // ),
+          //   label: 'Share',
+          // ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.share),
+          //   // icon: Badge(
+          //   //   label: Text('2'),
+          //   //   child: Icon(Icons.messenger_sharp),
+          //   // ),
+          //   label: 'Share',
+          // ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.share),
+          //   // icon: Badge(
+          //   //   label: Text('2'),
+          //   //   child: Icon(Icons.messenger_sharp),
+          //   // ),
+          //   label: 'Share',
+          // ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.share),
+          //   // icon: Badge(
+          //   //   label: Text('2'),
+          //   //   child: Icon(Icons.messenger_sharp),
+          //   // ),
+          //   label: 'Share',
+          // ),
+          // NavigationDestination(
+          //   icon: Icon(Icons.share),
+          //   // icon: Badge(
+          //   //   label: Text('2'),
+          //   //   child: Icon(Icons.messenger_sharp),
+          //   // ),
+          //   label: 'Share',
+          // ),
         ],
       ),
     );
