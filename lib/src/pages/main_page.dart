@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,40 +23,65 @@ class MainPage extends StatelessWidget {
             : Base.mainPageController.currentPageIndex.value == 1
                 ? DocumentPage()
                 : PersonPage(),
-        floatingActionButton:
-            Base.mainPageController.currentPageIndex.value == 0
-                ? FloatingActionButton(
-                    onPressed: () async {
-                      final pics = await Base.imagesController.scanDocuments();
-                      if (pics != null && pics.isNotEmpty) {
-                        Base.imagesController.pictures.value = pics;
-                        Get.to(ImageViewPage(pictures: pics));
+        floatingActionButton: Base.mainPageController.currentPageIndex.value ==
+                0
+            ? FloatingActionButton(
+                onPressed: () async {
+                  final pics = await Base.imagesController.scanDocuments();
+                  if (pics != null && pics.isNotEmpty) {
+                    Base.imagesController.pictures.value = pics;
 
-                        log('file');
-                      }
-                      // setState(() {
-                      //   index = (index + 1) % customizations.length;
-                      // });
-                    },
-                    // foregroundColor: customizations[index].$1,
-                    // backgroundColor: customizations[index].$2,
-                    // shape: customizations[index].$3,
-                    backgroundColor: Colors.teal,
-                    child: const Icon(
-                      Icons.camera_alt,
-                      size: 35,
-                      color: Colors.white,
-                    ),
-                  )
-                : null,
+                    log('$pics');
+
+                    Base.imagesController.addImagesInList(imgPathList: pics);
+
+                    Get.to(ImageViewPage(pictures: pics));
+
+                    log('file');
+                  }
+                  // setState(() {
+                  //   index = (index + 1) % customizations.length;
+                  // });
+                },
+                // foregroundColor: customizations[index].$1,
+                // backgroundColor: customizations[index].$2,
+                // shape: customizations[index].$3,
+                backgroundColor: Colors.teal,
+                child: const Icon(
+                  Icons.camera_alt,
+                  size: 35,
+                  color: Colors.white,
+                ),
+              )
+            : null,
         bottomNavigationBar: Obx(
           () => NavigationBar(
-            onDestinationSelected: (int index) {
+            onDestinationSelected: (int index) async {
               Base.mainPageController.currentPageIndex.value = index;
               log('${Base.mainPageController.currentPageIndex.value}');
               // setState(() {
               //   currentPageIndex = index;
               // });
+
+              log('message');
+
+              final dir = await Base.localStorageController.getAppDir();
+              log('${dir}' + '@@@@@@@');
+              log('ScanPro ${DateTime.now().millisecondsSinceEpoch}' +
+                  '@@@@@@@');
+              // final fileLoc = await dir.create();
+              // log('${dir.path}/images');
+
+              //  final res = await Directory('${dir.path}/images').create();
+
+              //log('$res' + 'Created file path');
+
+              final val = await Directory('${dir.path}/images').exists();
+
+              log('$val');
+
+              final r = Directory('${dir.path}/images').list();
+              log('${await r.length}' + 'lenght');
             },
             indicatorColor: Colors.teal,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,

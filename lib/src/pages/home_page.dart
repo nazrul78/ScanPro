@@ -194,145 +194,231 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                // SizedBox(height: 10),
 
-                ListTile(
-                  contentPadding: EdgeInsets.all(5),
-                  leading: Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.lightBlueAccent,
-                    ),
-                  ),
-                  title: Text(
-                    'ScanPro 29-01-2025',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  subtitle: Text(
-                    '2025-01-29 14:13',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
-                  trailing: Icon(Icons.check_box_outline_blank,
-                      color: Colors.grey[700]),
-                ),
+                ListView.builder(
+                    // padding: const EdgeInsets.all(8),
+                    itemCount: 2,
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          ListTile(
+                            contentPadding: EdgeInsets.all(5),
+                            leading: Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.lightBlueAccent,
+                              ),
+                            ),
+                            title: Text(
+                              'ScanPro 29-01-2025',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            subtitle: Text(
+                              '2025-01-29 14:13',
+                              style:
+                                  TextStyle(color: Colors.grey, fontSize: 12),
+                            ),
+                            trailing: Icon(Icons.check_box_outline_blank,
+                                color: Colors.grey[700]),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(
+                                height: 35,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.blueGrey[800]),
+                                  onPressed: () {},
+                                  child: Text('Share',
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 35,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.blueGrey[800]),
+                                  onPressed: () {},
+                                  child: Text('To Word',
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 35,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.blueGrey[800]),
+                                  onPressed: () {},
+                                  child: Text('View',
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                              ),
+                              // TextButton(
+                              //   style: TextButton.styleFrom(
+                              //     foregroundColor: Colors.red,
+                              //   ),
+                              //   onPressed: () {},
+                              //   child: Text('TextButton svs'),
+                              // )
+                            ],
+                          ),
+                          SizedBox(height: 10),
+                          Divider(
+                            // height: 10,
+                            thickness: 1,
+                            color: Colors.blueGrey[800],
+                            indent: 5,
+                            endIndent: 5,
+                          ),
+                        ],
+                      );
+                    }),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                      height: 35,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueGrey[800]),
-                        onPressed: () {},
-                        child: Text('Share',
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 35,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueGrey[800]),
-                        onPressed: () {},
-                        child: Text('To Word',
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 35,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueGrey[800]),
-                        onPressed: () {},
-                        child:
-                            Text('View', style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    // TextButton(
-                    //   style: TextButton.styleFrom(
-                    //     foregroundColor: Colors.red,
-                    //   ),
-                    //   onPressed: () {},
-                    //   child: Text('TextButton svs'),
-                    // )
-                  ],
-                ),
-                SizedBox(height: 10),
-                Divider(
-                  // height: 10,
-                  thickness: 1,
-                  color: Colors.blueGrey[800],
-                  indent: 5,
-                  endIndent: 5,
-                ),
+                // Column(
+                //   children: [
+                //     ListTile(
+                //       contentPadding: EdgeInsets.all(5),
+                //       leading: Container(
+                //         height: 50,
+                //         width: 50,
+                //         decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.circular(5),
+                //           color: Colors.lightBlueAccent,
+                //         ),
+                //       ),
+                //       title: Text(
+                //         'ScanPro 29-01-2025',
+                //         style: TextStyle(color: Colors.white),
+                //       ),
+                //       subtitle: Text(
+                //         '2025-01-29 14:13',
+                //         style: TextStyle(color: Colors.grey, fontSize: 12),
+                //       ),
+                //       trailing: Icon(Icons.check_box_outline_blank,
+                //           color: Colors.grey[700]),
+                //     ),
+                //     Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //       children: [
+                //         SizedBox(
+                //           height: 35,
+                //           child: ElevatedButton(
+                //             style: ElevatedButton.styleFrom(
+                //                 backgroundColor: Colors.blueGrey[800]),
+                //             onPressed: () {},
+                //             child: Text('Share',
+                //                 style: TextStyle(color: Colors.white)),
+                //           ),
+                //         ),
+                //         SizedBox(
+                //           height: 35,
+                //           child: ElevatedButton(
+                //             style: ElevatedButton.styleFrom(
+                //                 backgroundColor: Colors.blueGrey[800]),
+                //             onPressed: () {},
+                //             child: Text('To Word',
+                //                 style: TextStyle(color: Colors.white)),
+                //           ),
+                //         ),
+                //         SizedBox(
+                //           height: 35,
+                //           child: ElevatedButton(
+                //             style: ElevatedButton.styleFrom(
+                //                 backgroundColor: Colors.blueGrey[800]),
+                //             onPressed: () {},
+                //             child: Text('View',
+                //                 style: TextStyle(color: Colors.white)),
+                //           ),
+                //         ),
+                //         // TextButton(
+                //         //   style: TextButton.styleFrom(
+                //         //     foregroundColor: Colors.red,
+                //         //   ),
+                //         //   onPressed: () {},
+                //         //   child: Text('TextButton svs'),
+                //         // )
+                //       ],
+                //     ),
+                //     SizedBox(height: 10),
+                //     Divider(
+                //       // height: 10,
+                //       thickness: 1,
+                //       color: Colors.blueGrey[800],
+                //       indent: 5,
+                //       endIndent: 5,
+                //     ),
+                //   ],
+                // ),
 
-                ListTile(
-                  contentPadding: EdgeInsets.all(5).copyWith(top: 0),
-                  leading: Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.amberAccent,
-                    ),
-                  ),
-                  title: Text(
-                    'ScanPro 30-01-2025',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  subtitle: Text(
-                    '2025-01-30 14:13',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
-                  trailing: Icon(Icons.check_box_outline_blank,
-                      color: Colors.grey[700]),
-                ),
+                // ListTile(
+                //   contentPadding: EdgeInsets.all(5).copyWith(top: 0),
+                //   leading: Container(
+                //     height: 50,
+                //     width: 50,
+                //     decoration: BoxDecoration(
+                //       borderRadius: BorderRadius.circular(5),
+                //       color: Colors.amberAccent,
+                //     ),
+                //   ),
+                //   title: Text(
+                //     'ScanPro 30-01-2025',
+                //     style: TextStyle(color: Colors.white),
+                //   ),
+                //   subtitle: Text(
+                //     '2025-01-30 14:13',
+                //     style: TextStyle(color: Colors.grey, fontSize: 12),
+                //   ),
+                //   trailing: Icon(Icons.check_box_outline_blank,
+                //       color: Colors.grey[700]),
+                // ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                      height: 35,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueGrey[800]),
-                        onPressed: () {},
-                        child: Text('Share',
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 35,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueGrey[800]),
-                        onPressed: () {},
-                        child: Text('To Word',
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 35,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueGrey[800]),
-                        onPressed: () {},
-                        child:
-                            Text('View', style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                    // TextButton(
-                    //   style: TextButton.styleFrom(
-                    //     foregroundColor: Colors.red,
-                    //   ),
-                    //   onPressed: () {},
-                    //   child: Text('TextButton svs'),
-                    // )
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //   children: [
+                //     SizedBox(
+                //       height: 35,
+                //       child: ElevatedButton(
+                //         style: ElevatedButton.styleFrom(
+                //             backgroundColor: Colors.blueGrey[800]),
+                //         onPressed: () {},
+                //         child: Text('Share',
+                //             style: TextStyle(color: Colors.white)),
+                //       ),
+                //     ),
+                //     SizedBox(
+                //       height: 35,
+                //       child: ElevatedButton(
+                //         style: ElevatedButton.styleFrom(
+                //             backgroundColor: Colors.blueGrey[800]),
+                //         onPressed: () {},
+                //         child: Text('To Word',
+                //             style: TextStyle(color: Colors.white)),
+                //       ),
+                //     ),
+                //     SizedBox(
+                //       height: 35,
+                //       child: ElevatedButton(
+                //         style: ElevatedButton.styleFrom(
+                //             backgroundColor: Colors.blueGrey[800]),
+                //         onPressed: () {},
+                //         child:
+                //             Text('View', style: TextStyle(color: Colors.white)),
+                //       ),
+                //     ),
+                //     // TextButton(
+                //     //   style: TextButton.styleFrom(
+                //     //     foregroundColor: Colors.red,
+                //     //   ),
+                //     //   onPressed: () {},
+                //     //   child: Text('TextButton svs'),
+                //     // )
+                //   ],
+                // ),
 
                 // Container(
                 //   //  color: Colors.amber,
