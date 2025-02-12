@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scan_pro/src/base/base.dart';
+import 'package:scan_pro/src/helpers/utility.dart';
 import 'package:scan_pro/src/pages/document_page.dart';
 import 'package:scan_pro/src/pages/home_page.dart';
 import 'package:scan_pro/src/pages/image_view_page.dart';
@@ -67,8 +68,10 @@ class MainPage extends StatelessWidget {
 
               final dir = await Base.localStorageController.getAppDir();
               log('${dir}' + '@@@@@@@');
-              log('ScanPro ${DateTime.now().millisecondsSinceEpoch}' +
-                  '@@@@@@@');
+              log('ScanPro ${DateTime.now()}' + '@@@@@@@');
+
+              log('${Utility.formatDateTimeIn12Hour(DateTime.now())}');
+
               // final fileLoc = await dir.create();
               // log('${dir.path}/images');
 
