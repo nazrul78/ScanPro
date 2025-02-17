@@ -38,7 +38,7 @@ class ImagesController extends GetxController {
     for (var item in imgPathList) {
       final img = ImageInfoModel(
         id: getUniqueId(),
-        imgName: 'ScanPro ${DateTime.now()}',
+        imgName: 'ScanPro ${DateTime.now().microsecondsSinceEpoch}',
         dateTime: DateTime.now(),
         imagePath: item,
       );
@@ -49,7 +49,7 @@ class ImagesController extends GetxController {
 
     final images = ImagesModel(
       id: getUniqueId(),
-      name: 'ScanPro ${DateTime.now()}',
+      name: 'ScanPro ${DateTime.now().microsecondsSinceEpoch}',
       images: imgs,
       dateTime: DateTime.now(),
     );

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scan_pro/src/base/base.dart';
 import 'package:scan_pro/src/config/app_theme.dart';
+import 'package:scan_pro/src/helpers/utility.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -235,7 +236,8 @@ class HomePage extends StatelessWidget {
                                 ),
                                 subtitle: Text(
                                   // '2025-01-29 14:13',
-                                  item.dateTime.toString(),
+                                  Utility.formatDateTimeIn12Hour(
+                                      item.dateTime!)!,
                                   style: TextStyle(
                                       color: Colors.grey, fontSize: 12),
                                 ),
