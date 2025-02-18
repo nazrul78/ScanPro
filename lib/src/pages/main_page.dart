@@ -37,12 +37,7 @@ class MainPage extends StatelessWidget {
                     Base.imagesController.addImagesInList(imgPathList: pics);
 
                     Get.to(ImageViewPage(pictures: pics));
-
-                    log('file');
                   }
-                  // setState(() {
-                  //   index = (index + 1) % customizations.length;
-                  // });
                 },
                 // foregroundColor: customizations[index].$1,
                 // backgroundColor: customizations[index].$2,

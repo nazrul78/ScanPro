@@ -1,5 +1,6 @@
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:get/get.dart';
+import 'package:scan_pro/src/base/base.dart';
 import 'package:scan_pro/src/helpers/get_unique_id.dart';
 import 'package:scan_pro/src/helpers/k_log.dart';
 import 'package:scan_pro/src/models.dart/image_info_model.dart';
@@ -32,7 +33,7 @@ class ImagesController extends GetxController {
     }
   }
 
-  void addImagesInList({required List<String> imgPathList}) {
+  void addImagesInList({required List<String> imgPathList}) async {
     final List<ImageInfoModel> imgs = [];
 
     for (var item in imgPathList) {
@@ -40,7 +41,8 @@ class ImagesController extends GetxController {
         id: getUniqueId(),
         imgName: 'ScanPro ${DateTime.now().microsecondsSinceEpoch}',
         dateTime: DateTime.now(),
-        imagePath: item,
+        imagePath: await Base.localStorageController.saveFileInAppDir(
+            filePath: item, dPath: '/images', extention: '.jpg'),
       );
       imgs.add(img);
     }
