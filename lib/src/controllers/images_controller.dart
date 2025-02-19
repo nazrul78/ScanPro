@@ -50,7 +50,7 @@ class ImagesController extends GetxController {
     klog(imgs.length);
 
     final images = ImagesModel(
-      id: getUniqueId(),
+      imgId: getUniqueId(),
       name: 'ScanPro ${DateTime.now().microsecondsSinceEpoch}',
       images: imgs,
       dateTime: DateTime.now(),
