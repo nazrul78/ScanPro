@@ -3,6 +3,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:scan_pro/src/helpers/k_log.dart';
 import 'package:scan_pro/src/helpers/kerror.dart';
+import 'package:scan_pro/src/models.dart/user.dart';
 
 class IsarService extends GetxService {
   late Isar isar;
@@ -15,7 +16,7 @@ class IsarService extends GetxService {
 
   /// List of collection schemas used in the Isar database
   final List<CollectionSchema<Object>> schemaList = [
-    // MovieDetailsModelSchema,
+    UserSchema,
     // TvDetailsModelSchema,
     // PlaylistsModelSchema,
     // DownloadModelSchema,

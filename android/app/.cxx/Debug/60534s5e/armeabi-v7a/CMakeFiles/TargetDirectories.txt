@@ -1,0 +1,2 @@
+C:/Users/tasnim/Documents/Flutter projects/Git/scan_pro/android/app/.cxx/Debug/60534s5e/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/tasnim/Documents/Flutter projects/Git/scan_pro/android/app/.cxx/Debug/60534s5e/armeabi-v7a/CMakeFiles/rebuild_cache.dir
