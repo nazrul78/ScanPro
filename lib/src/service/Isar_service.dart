@@ -3,6 +3,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:scan_pro/src/helpers/k_log.dart';
 import 'package:scan_pro/src/helpers/kerror.dart';
+import 'package:scan_pro/src/models.dart/images_model.dart';
 import 'package:scan_pro/src/models.dart/user.dart';
 
 class IsarService extends GetxService {
@@ -17,6 +18,7 @@ class IsarService extends GetxService {
   /// List of collection schemas used in the Isar database
   final List<CollectionSchema<Object>> schemaList = [
     UserSchema,
+    ImagesModelSchema,
     // TvDetailsModelSchema,
     // PlaylistsModelSchema,
     // DownloadModelSchema,
@@ -82,23 +84,68 @@ class IsarService extends GetxService {
     klog('Count:' '$users');
   }
 
+  Future<void> isarPutTestImgData(ImagesModel img) async {
+    // final s = await getAll<User>();
+    // klog(s.length);
+
+    // final dir = await getApplicationDocumentsDirectory();
+    // isar = await Isar.open(
+    //   [UserSchema],
+    //   directory: dir.path,
+    // );
+    // final user = User()
+    //   ..name = 'Fajle Rabbi'
+    //   ..age = 27;
+
+    // final addedUser = await isar.users.put(user);
+
+    // await isar.writeTxn(() async {
+    //   final addedUserId = await isar.users.put(user);
+    //   klog('Id:' '$addedUserId');
+    // });
+
+    await put<ImagesModel>(img);
+
+    final imgs = await isar.imagesModels.count();
+    // final users2 = isar.collection<User>();
+    klog('Count:' '$imgs');
+  }
+
   Future<void> isarGetTest() async {
     // final userList = await isar.writeTxn(
     //   () async =>
     //       await isar.collection<User>().where().offset(0).limit(20).findAll(),
     // );
 
-    final userList = await getAll<User>();
+    //  final userList = await getAll<User>();
 
     // final userList = await isar.writeTxn(
     //   () async => await isar.collection<User>().where().findAll(),
     // );
 
-    klog('Total:' '${userList.length}');
-    for (var item in userList) {
+    // final userList = await getAll<User>();
+
+    // klog('Total:' '${userList.length}');
+    // for (var item in userList) {
+    //   klog('id:' '${item.id}');
+    //   klog('name:' '${item.name}');
+    //   klog('id:' '${item.age}');
+    // }
+
+    // final users = await isar.users.count();
+    // // final users2 = isar.collection<User>();
+    // klog('Count:' '$users');
+
+    final imageList = await getAll<ImagesModel>();
+
+    klog('Total:' '${imageList.length}');
+    for (var item in imageList) {
       klog('id:' '${item.id}');
       klog('name:' '${item.name}');
-      klog('id:' '${item.age}');
+      klog('id:' '${item.dateTime.toString()}');
+      for (var item in item.images!) {
+        klog('Path:' '${item.imagePath}');
+      }
     }
 
     // await isar.writeTxn(() async {
@@ -106,9 +153,9 @@ class IsarService extends GetxService {
     //   klog('Id:' '${userList.}');
     // });
 
-    final users = await isar.users.count();
+    final imgs = await isar.imagesModels.count();
     // final users2 = isar.collection<User>();
-    klog('Count:' '$users');
+    klog('Count:' '$imgs');
   }
 
   /// Closes the Isar database

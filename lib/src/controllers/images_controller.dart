@@ -57,6 +57,8 @@ class ImagesController extends GetxController {
     );
 
     imgList.add(images);
+
+    await Base.isarService.isarPutTestImgData(images);
     klog(imgList.length);
 
     // final img = ImageInfoModel(
