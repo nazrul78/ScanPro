@@ -5,14 +5,12 @@ import 'package:get/get.dart';
 import 'package:scan_pro/src/base/base.dart';
 import 'package:scan_pro/src/config/app_theme.dart';
 import 'package:scan_pro/src/helpers/utility.dart';
-import 'package:scan_pro/src/service/Isar_service.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(IsarService());
     return Obx(
       () => Column(
         children: [

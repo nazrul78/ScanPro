@@ -53,33 +53,40 @@ class MainPage extends StatelessWidget {
         bottomNavigationBar: Obx(
           () => NavigationBar(
             onDestinationSelected: (int index) async {
-              Base.mainPageController.currentPageIndex.value = index;
-              log('${Base.mainPageController.currentPageIndex.value}');
-              // setState(() {
-              //   currentPageIndex = index;
-              // });
+              if (index == 0) {
+                Base.mainPageController.currentPageIndex.value = index;
+                log('${Base.mainPageController.currentPageIndex.value}');
+                // setState(() {
+                //   currentPageIndex = index;
+                // });
 
-              log('message');
+                log('message');
 
-              final dir = await Base.localStorageController.getAppDir();
-              log('${dir}' + '@@@@@@@');
-              log('ScanPro ${DateTime.now()}' + '@@@@@@@');
+                final dir = await Base.localStorageController.getAppDir();
+                log('${dir}' + '@@@@@@@');
+                log('ScanPro ${DateTime.now()}' + '@@@@@@@');
 
-              log('${Utility.formatDateTimeIn12Hour(DateTime.now())}');
+                log('${Utility.formatDateTimeIn12Hour(DateTime.now())}');
 
-              // final fileLoc = await dir.create();
-              // log('${dir.path}/images');
+                // final fileLoc = await dir.create();
+                // log('${dir.path}/images');
 
-              //  final res = await Directory('${dir.path}/images').create();
+                //  final res = await Directory('${dir.path}/images').create();
 
-              //log('$res' + 'Created file path');
+                //log('$res' + 'Created file path');
 
-              final val = await Directory('${dir.path}/images').exists();
+                final val = await Directory('${dir.path}/images').exists();
 
-              log('$val');
+                log('$val');
 
-              final r = Directory('${dir.path}/images').list();
-              log('${await r.length}' + 'lenght');
+                final r = Directory('${dir.path}/images').list();
+                log('${await r.length}' + 'lenght');
+              } else if (index == 1) {
+                await Base.isarService.isarInit();
+              } else if (index == 2) {
+                // await Base.isarService.isarPutTest();
+                await Base.isarService.isarGetTest();
+              }
             },
             indicatorColor: Colors.teal,
             labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,

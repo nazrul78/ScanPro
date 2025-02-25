@@ -10,7 +10,7 @@ class IsarService extends GetxService {
 
   @override
   void onInit() async {
-    await init();
+    // await init();
     super.onInit();
   }
 
@@ -45,6 +45,72 @@ class IsarService extends GetxService {
     }
   }
 
+  Future<void> isarInit() async {
+    final dir = await getApplicationDocumentsDirectory();
+    isar = await Isar.open(
+      schemaList,
+      directory: dir.path,
+    );
+
+    klog('Isar DB Initialized');
+  }
+
+  Future<void> isarPutTest() async {
+    // final s = await getAll<User>();
+    // klog(s.length);
+
+    // final dir = await getApplicationDocumentsDirectory();
+    // isar = await Isar.open(
+    //   [UserSchema],
+    //   directory: dir.path,
+    // );
+    final user = User()
+      ..name = 'Fajle Rabbi'
+      ..age = 27;
+
+    // final addedUser = await isar.users.put(user);
+
+    // await isar.writeTxn(() async {
+    //   final addedUserId = await isar.users.put(user);
+    //   klog('Id:' '$addedUserId');
+    // });
+
+    await put<User>(user);
+
+    final users = await isar.users.count();
+    // final users2 = isar.collection<User>();
+    klog('Count:' '$users');
+  }
+
+  Future<void> isarGetTest() async {
+    // final userList = await isar.writeTxn(
+    //   () async =>
+    //       await isar.collection<User>().where().offset(0).limit(20).findAll(),
+    // );
+
+    final userList = await getAll<User>();
+
+    // final userList = await isar.writeTxn(
+    //   () async => await isar.collection<User>().where().findAll(),
+    // );
+
+    klog('Total:' '${userList.length}');
+    for (var item in userList) {
+      klog('id:' '${item.id}');
+      klog('name:' '${item.name}');
+      klog('id:' '${item.age}');
+    }
+
+    // await isar.writeTxn(() async {
+    //   final userList = await isar.collection<User>().get;
+    //   klog('Id:' '${userList.}');
+    // });
+
+    final users = await isar.users.count();
+    // final users2 = isar.collection<User>();
+    klog('Count:' '$users');
+  }
+
   /// Closes the Isar database
   /// Returns `true` if closed successfully, otherwise `false`
   Future<bool> close() async {
@@ -64,6 +130,12 @@ class IsarService extends GetxService {
 
   /// Retrieves all objects of type `T` from the collection with optional pagination
   Future<List<T>> getAll<T>({int? skip = 0, int? limit}) async => isar.writeTxn(
+        () async => await isar.collection<T>().where().findAll(),
+      );
+
+  /// Retrieves all objects of type `T` from the collection with optional pagination
+  Future<List<T>> getAllWithPagination<T>({int? skip = 0, int? limit}) async =>
+      isar.writeTxn(
         () async => await isar
             .collection<T>()
             .where()
