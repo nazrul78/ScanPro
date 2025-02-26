@@ -32,6 +32,7 @@ class ConfigController extends GetxController {
   Future<void> initAppConfig() async {
     /// ====> Isar and others config <===
     await Base.isarService.isarInit();
+    await Base.isarService.imgDataGetFromIsarDB();
 
     /// To initialize the Shared Preferences
     // SiteSurveySharedPreferences.initializePrefs();

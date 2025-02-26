@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 
 import 'package:path_provider/path_provider.dart';
+import 'package:scan_pro/src/helpers/k_log.dart';
 
 class LocalStorageController extends GetxController {
   Future<Directory> getAppDir() async {
@@ -40,6 +41,34 @@ class LocalStorageController extends GetxController {
       await getFileList(dPath: dPath);
       return fPath.path;
     }
+  }
+
+  /// To delete the file in App dir
+  Future<void> fileDeleteFromAppDir({required String filePath}) async {
+    // final dirPath = await Directory(filePath).exists();
+
+    if (await File(filePath).exists()) {
+      final res = await File(filePath).delete();
+
+      klog('File delete: $res');
+      // final f = File(
+      //     '${(await getApplicationDocumentsDirectory()).path}$dPath/${DateTime.now().microsecondsSinceEpoch}$extention');
+      // final fPath = await f.writeAsBytes(byte);
+
+      // await getFileList(dPath: dPath);
+
+      // return fPath.path;
+    }
+    //  else {
+    //   final res = await Directory(
+    //           '${(await getApplicationDocumentsDirectory()).path}$dPath')
+    //       .create();
+    //   final f =
+    //       File('${res.path}/${DateTime.now().microsecondsSinceEpoch}.jpg');
+    //   final fPath = await f.writeAsBytes(byte);
+    //   await getFileList(dPath: dPath);
+    //   return fPath.path;
+    // }
   }
 
   ///To get the files from App dir

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scan_pro/src/base/base.dart';
 import 'package:scan_pro/src/config/app_theme.dart';
+import 'package:scan_pro/src/helpers/k_log.dart';
 import 'package:scan_pro/src/helpers/utility.dart';
 
 class HomePage extends StatelessWidget {
@@ -241,8 +242,17 @@ class HomePage extends StatelessWidget {
                                   style: TextStyle(
                                       color: Colors.grey, fontSize: 12),
                                 ),
-                                trailing:
-                                    Icon(Icons.delete, color: Colors.grey[700]),
+                                trailing: InkWell(
+                                    onTap: () async {
+                                      await Base.imagesController
+                                          .deleteImage(item);
+                                      // await Base.isarService
+                                      //     .imgDataDeleteFromIsarDB(item.id!);
+                                      klog('Delete imgId ${item.imgId}');
+                                      klog('Delete Id ${item.id}');
+                                    },
+                                    child: Icon(Icons.delete,
+                                        color: Colors.grey[700])),
                               ),
                               Row(
                                 mainAxisAlignment:

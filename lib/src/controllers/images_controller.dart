@@ -58,7 +58,7 @@ class ImagesController extends GetxController {
 
     imgList.add(images);
 
-    await Base.isarService.isarPutTestImgData(images);
+    await Base.isarService.imgDataPutInIsarDB(images);
     klog(imgList.length);
 
     // final img = ImageInfoModel(
@@ -68,5 +68,18 @@ class ImagesController extends GetxController {
     //   imagePath: imgPath,
     // );
     // imgList.add(img);
+  }
+
+  /// Delete Image.
+  Future<void> deleteImage(ImagesModel img) async {
+    //Image delete from Isar DB.
+    await Base.isarService.imgDataDeleteFromIsarDB(img.id!);
+    //Image delete from RXList.
+    Base.imagesController.imgList.remove(img);
+    //Image delete from App Dir.
+    for (var item in img.images!) {
+      await Base.localStorageController
+          .fileDeleteFromAppDir(filePath: item.imagePath!);
+    }
   }
 }

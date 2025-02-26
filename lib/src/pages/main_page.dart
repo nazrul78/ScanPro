@@ -9,7 +9,7 @@ import 'package:scan_pro/src/pages/document_page.dart';
 import 'package:scan_pro/src/pages/home_page.dart';
 import 'package:scan_pro/src/pages/image_view_page.dart';
 import 'package:scan_pro/src/pages/person_page.dart';
-import 'package:scan_pro/src/service/Isar_service.dart';
+
 import '../config/app_theme.dart';
 
 class MainPage extends StatelessWidget {
@@ -17,8 +17,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Base.imagesController;
-    Get.put(IsarService());
     return Obx(
       () => Scaffold(
         backgroundColor: AppTheme.appThemeColor,

@@ -6,6 +6,8 @@ import 'package:scan_pro/src/helpers/kerror.dart';
 import 'package:scan_pro/src/models.dart/images_model.dart';
 import 'package:scan_pro/src/models.dart/user.dart';
 
+import '../base/base.dart';
+
 class IsarService extends GetxService {
   late Isar isar;
 
@@ -85,7 +87,7 @@ class IsarService extends GetxService {
     klog('Count:' '$users');
   }
 
-  Future<void> isarPutTestImgData(ImagesModel img) async {
+  Future<void> imgDataPutInIsarDB(ImagesModel img) async {
     // final s = await getAll<User>();
     // klog(s.length);
 
@@ -111,6 +113,35 @@ class IsarService extends GetxService {
     // final users2 = isar.collection<User>();
     klog('Count:' '$imgs');
   }
+
+  Future<void> imgDataGetFromIsarDB() async {
+    final imageList = await getAll<ImagesModel>();
+    if (imageList.isNotEmpty) {
+      Base.imagesController.imgList.addAll(imageList);
+    }
+
+    klog('Total:' '${imageList.length}');
+  }
+
+  Future<void> imgDataDeleteFromIsarDB(int id) async {
+    await delete<ImagesModel>(id);
+    final imageList = await getAll<ImagesModel>();
+    // if (imageList.isNotEmpty) {
+    //   Base.imagesController.imgList.addAll(imageList);
+    // }
+
+    klog('Total:' '${imageList.length}');
+  }
+
+  // Future<void> imgDeleteFromAppDir(int id) async {
+  //   await delete<ImagesModel>(id);
+  //   final imageList = await getAll<ImagesModel>();
+  //   // if (imageList.isNotEmpty) {
+  //   //   Base.imagesController.imgList.addAll(imageList);
+  //   // }
+
+  //   klog('Total:' '${imageList.length}');
+  // }
 
   Future<void> isarGetTest() async {
     // final userList = await isar.writeTxn(
@@ -204,8 +235,10 @@ class IsarService extends GetxService {
 
   /// Deletes an object of type `T` from the collection by `id`
   /// Returns `true` if the object was deleted successfully, otherwise `false`
-  Future<bool> delete<T>(String id) async =>
-      isar.writeTxn(() async => await isar.collection<T>().delete(hashId(id)));
+  // Future<bool> delete<T>(String id) async =>
+  //     isar.writeTxn(() async => await isar.collection<T>().delete(hashId(id)));
+  Future<bool> delete<T>(int id) async =>
+      isar.writeTxn(() async => await isar.collection<T>().delete(id));
 
   /// Deletes all objects from the collection of type `T`
   Future<void> deleteCollection<T>() async =>
