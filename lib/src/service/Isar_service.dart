@@ -39,7 +39,7 @@ class IsarService extends GetxService {
         inspector: true,
       );
 
-      klog('Isar DB Initialized');
+      klog('Isar DB Initialized using INIT');
       return true;
     } catch (e) {
       kerror(e);
@@ -52,6 +52,7 @@ class IsarService extends GetxService {
     isar = await Isar.open(
       schemaList,
       directory: dir.path,
+      inspector: true,
     );
 
     klog('Isar DB Initialized');
