@@ -25,32 +25,33 @@ class MainPage extends StatelessWidget {
             : Base.mainPageController.currentPageIndex.value == 1
                 ? DocumentPage()
                 : PersonPage(),
-        floatingActionButton: Base.mainPageController.currentPageIndex.value ==
-                0
-            ? FloatingActionButton(
-                onPressed: () async {
-                  final pics = await Base.imagesController.scanDocuments();
-                  if (pics != null && pics.isNotEmpty) {
-                    Base.imagesController.pictures.value = pics;
+        floatingActionButton:
+            Base.mainPageController.currentPageIndex.value == 0
+                ? FloatingActionButton(
+                    onPressed: () async {
+                      final pics = await Base.imagesController.scanDocuments();
+                      if (pics != null && pics.isNotEmpty) {
+                        Base.imagesController.pictures.value = pics;
 
-                    log('$pics');
+                        log('$pics');
 
-                    Base.imagesController.addImagesInList(imgPathList: pics);
+                        final imgs = await Base.imagesController
+                            .addImagesInList(imgPathList: pics);
 
-                    Get.to(ImageViewPage(pictures: pics));
-                  }
-                },
-                // foregroundColor: customizations[index].$1,
-                // backgroundColor: customizations[index].$2,
-                // shape: customizations[index].$3,
-                backgroundColor: Colors.teal,
-                child: const Icon(
-                  Icons.camera_alt,
-                  size: 35,
-                  color: Colors.white,
-                ),
-              )
-            : null,
+                        Get.to(ImageViewPage(pictures: imgs));
+                      }
+                    },
+                    // foregroundColor: customizations[index].$1,
+                    // backgroundColor: customizations[index].$2,
+                    // shape: customizations[index].$3,
+                    backgroundColor: Colors.teal,
+                    child: const Icon(
+                      Icons.camera_alt,
+                      size: 35,
+                      color: Colors.white,
+                    ),
+                  )
+                : null,
         bottomNavigationBar: Obx(
           () => NavigationBar(
             onDestinationSelected: (int index) async {

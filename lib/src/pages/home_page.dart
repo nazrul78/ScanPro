@@ -6,6 +6,7 @@ import 'package:scan_pro/src/base/base.dart';
 import 'package:scan_pro/src/config/app_theme.dart';
 import 'package:scan_pro/src/helpers/k_log.dart';
 import 'package:scan_pro/src/helpers/utility.dart';
+import 'package:scan_pro/src/pages/image_view_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -288,7 +289,11 @@ class HomePage extends StatelessWidget {
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor:
                                               Colors.blueGrey[800]),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        klog('Pressed View');
+                                        Get.to(ImageViewPage(
+                                            pictures: item.images!));
+                                      },
                                       child: Text('View',
                                           style:
                                               TextStyle(color: Colors.white)),

@@ -33,7 +33,8 @@ class ImagesController extends GetxController {
     }
   }
 
-  void addImagesInList({required List<String> imgPathList}) async {
+  Future<List<ImageInfoModel>> addImagesInList(
+      {required List<String> imgPathList}) async {
     final List<ImageInfoModel> imgs = [];
 
     for (var item in imgPathList) {
@@ -60,6 +61,8 @@ class ImagesController extends GetxController {
 
     await Base.isarService.imgDataPutInIsarDB(images);
     klog(imgList.length);
+
+    return imgs;
 
     // final img = ImageInfoModel(
     //   id: getUniqueId(),

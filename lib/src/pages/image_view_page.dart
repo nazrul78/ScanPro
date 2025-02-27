@@ -3,12 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:scan_pro/src/config/app_theme.dart';
+import 'package:scan_pro/src/models.dart/image_info_model.dart';
 
 class ImageViewPage extends StatelessWidget {
   // late List<String> pictures;
   const ImageViewPage({super.key, required this.pictures});
 
-  final List<String> pictures;
+  final List<ImageInfoModel> pictures;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +58,7 @@ class ImageViewPage extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         itemCount: pictures.length,
         itemBuilder: (BuildContext context, int index) {
+          final item = pictures[index];
           return SizedBox(
             height: 500,
 
@@ -70,7 +72,7 @@ class ImageViewPage extends StatelessWidget {
                   border: Border.all(color: Colors.grey, width: 1)),
               //imageProvider: AssetImage("assets/large-image.jpg"),
               // imageProvider: AssetImage(pictures[0]),
-              imageProvider: FileImage(File(pictures[index])),
+              imageProvider: FileImage(File(item.imagePath!)),
               // imageProvider: NetworkImage(
               //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s'),
               // imageProvider: AssetImage(Base.imagesController.pictures.first),
