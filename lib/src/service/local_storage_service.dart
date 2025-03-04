@@ -1,10 +1,1 @@
-class LocalStorageService {
-  //Hello============
-  //Hello============
-  //Hello============
-  //Hello============
-  //Hello============
-  //Hello============
-  //Hello============
-  //Hello============
-}
+class LocalStorageService {}
