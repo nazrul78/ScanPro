@@ -277,8 +277,10 @@ class HomePage extends StatelessWidget {
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor:
                                               Colors.blueGrey[800]),
-                                      onPressed: () {},
-                                      child: Text('To Word',
+                                      onPressed: () {
+                                        klog('Pressed PDF');
+                                      },
+                                      child: Text('To PDF',
                                           style:
                                               TextStyle(color: Colors.white)),
                                     ),
