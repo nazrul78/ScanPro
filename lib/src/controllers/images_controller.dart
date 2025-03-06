@@ -1,5 +1,11 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:scan_pro/src/base/base.dart';
 import 'package:scan_pro/src/helpers/get_unique_id.dart';
 import 'package:scan_pro/src/helpers/k_log.dart';
@@ -84,5 +90,54 @@ class ImagesController extends GetxController {
       await Base.localStorageController
           .fileDeleteFromAppDir(filePath: item.imagePath!);
     }
+  }
+
+  /// To generate PDF
+  Future<String?> generatePDFWithImage(String imgPath) async {
+    final pdf = pw.Document();
+
+    // Get the image file from the app directory
+    final directory = await getApplicationDocumentsDirectory();
+    // final imagePath = File('${directory.path}/my_image.jpg');
+    final imagePath = File(imgPath);
+
+    if (!await imagePath.exists()) {
+      klog("Image not found!");
+      return null;
+    }
+
+    // Convert image to bytes
+    final Uint8List imageBytes = await imagePath.readAsBytes();
+    final pw.MemoryImage pdfImage = pw.MemoryImage(imageBytes);
+
+    // Add image to PDF
+    pdf.addPage(
+      pw.Page(
+        build: (pw.Context context) {
+          return pw.Center(
+            child: pw.Image(pdfImage), // Adding image to PDF
+          );
+        },
+      ),
+    );
+
+    // Save PDF to file
+    // final pdfFile = File('${directory.path}/generated.pdf');
+    final pdfFile = File(
+        '${directory.path}/ScanPro ${DateTime.now().microsecondsSinceEpoch}.pdf');
+    await pdfFile.writeAsBytes(await pdf.save());
+
+    klog("PDF saved at: ${pdfFile.path}");
+
+    return pdfFile.path;
+  }
+
+  /// To open the PDF file
+  Future<void> openGeneratedPDF(String pdfFilePath) async {
+    // final directory = await getApplicationDocumentsDirectory();
+    // final pdfFile = File('${directory.path}/generated.pdf');
+    final pdfFile = File(pdfFilePath);
+    await OpenFile.open(
+        pdfFile.path); // Opens the file using a default PDF viewer
   }
 }
