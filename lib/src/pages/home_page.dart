@@ -7,7 +7,6 @@ import 'package:scan_pro/src/config/app_theme.dart';
 import 'package:scan_pro/src/helpers/k_log.dart';
 import 'package:scan_pro/src/helpers/utility.dart';
 import 'package:scan_pro/src/pages/image_view_page.dart';
-import 'package:scan_pro/src/pages/pdf_view_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
