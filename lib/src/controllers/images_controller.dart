@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:scan_pro/src/base/base.dart';
 import 'package:scan_pro/src/helpers/get_unique_id.dart';
@@ -97,7 +96,7 @@ class ImagesController extends GetxController {
     final pdf = pw.Document();
 
     // Get the image file from the app directory
-    final directory = await getApplicationDocumentsDirectory();
+    // final directory = await getApplicationDocumentsDirectory();
     // final imagePath = File('${directory.path}/my_image.jpg');
     final imagePath = File(imgPath);
 
@@ -123,13 +122,18 @@ class ImagesController extends GetxController {
 
     // Save PDF to file
     // final pdfFile = File('${directory.path}/generated.pdf');
-    final pdfFile = File(
-        '${directory.path}/ScanPro ${DateTime.now().microsecondsSinceEpoch}.pdf');
-    await pdfFile.writeAsBytes(await pdf.save());
+    // final pdfFile = File(
+    //     '${directory.path}/ScanPro ${DateTime.now().microsecondsSinceEpoch}.pdf');
+    // await pdfFile.writeAsBytes(await pdf.save());
 
-    klog("PDF saved at: ${pdfFile.path}");
+    // await Base.localStorageController.saveFileInAppDir(
+    //         filePath: item, dPath: '/images', extention: '.jpg'),
+    final pdfFile = await Base.localStorageController
+        .savePdfFileInAppDir(pdf: pdf, dPath: '/PDF', extention: '.pdf');
 
-    return pdfFile.path;
+    klog("PDF saved at: $pdfFile");
+
+    return pdfFile;
   }
 
   /// To open the PDF file

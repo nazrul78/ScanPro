@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 
 import 'package:path_provider/path_provider.dart';
+import 'package:pdf/widgets.dart';
 import 'package:scan_pro/src/helpers/k_log.dart';
 
 class LocalStorageController extends GetxController {
@@ -35,8 +36,8 @@ class LocalStorageController extends GetxController {
       final res = await Directory(
               '${(await getApplicationDocumentsDirectory()).path}$dPath')
           .create();
-      final f =
-          File('${res.path}/${DateTime.now().microsecondsSinceEpoch}.jpg');
+      final f = File(
+          '${res.path}/${DateTime.now().microsecondsSinceEpoch}$extention');
       final fPath = await f.writeAsBytes(byte);
       await getFileList(dPath: dPath);
       return fPath.path;
@@ -69,6 +70,41 @@ class LocalStorageController extends GetxController {
     //   await getFileList(dPath: dPath);
     //   return fPath.path;
     // }
+  }
+
+  /// To save the file in App dir
+  Future<String> savePdfFileInAppDir(
+      {required Document pdf,
+      required String dPath,
+      required String extention}) async {
+    // final pdf = pw.Document();
+    // final byte = File(filePath).readAsBytesSync();
+
+    final dirPath = await Directory(
+            '${(await getApplicationDocumentsDirectory()).path}$dPath')
+        .exists();
+
+    if (dirPath) {
+      final pdfFile = File(
+          '${(await getApplicationDocumentsDirectory()).path}$dPath/${DateTime.now().microsecondsSinceEpoch}$extention');
+      // final fPath = await f.writeAsBytes(byte);
+
+      final fPath = await pdfFile.writeAsBytes(await pdf.save());
+
+      await getFileList(dPath: dPath);
+
+      return fPath.path;
+    } else {
+      final res = await Directory(
+              '${(await getApplicationDocumentsDirectory()).path}$dPath')
+          .create();
+      final pdfFile = File(
+          '${res.path}/${DateTime.now().microsecondsSinceEpoch}$extention');
+      // final fPath = await f.writeAsBytes(byte);
+      final fPath = await pdfFile.writeAsBytes(await pdf.save());
+      await getFileList(dPath: dPath);
+      return fPath.path;
+    }
   }
 
   ///To get the files from App dir
