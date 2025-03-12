@@ -281,9 +281,14 @@ class HomePage extends StatelessWidget {
                                         klog('Pressed PDF');
                                         klog(
                                             'Image path ${item.images!.first.imagePath}');
+                                        // final pdfPath = await Base
+                                        //     .imagesController
+                                        //     .generatePDFWithImage(item.images!);
                                         final pdfPath = await Base
                                             .imagesController
-                                            .generatePDFWithImage(item.images!);
+                                            .addPDFInList(
+                                                imgInfoList: item.images!);
+
                                         await Base.imagesController
                                             .openGeneratedPDF(pdfPath!);
                                         // Get.to(PdfViewPage());

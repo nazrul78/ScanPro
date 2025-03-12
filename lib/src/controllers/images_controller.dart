@@ -10,10 +10,12 @@ import 'package:scan_pro/src/helpers/get_unique_id.dart';
 import 'package:scan_pro/src/helpers/k_log.dart';
 import 'package:scan_pro/src/models.dart/image_info_model.dart';
 import 'package:scan_pro/src/models.dart/images_model.dart';
+import 'package:scan_pro/src/models.dart/pdf_info_model.dart';
 
 class ImagesController extends GetxController {
   final pictures = RxList<String>([]);
   final imgList = RxList<ImagesModel>([]);
+  final pdfList = RxList<PdfInfoModel>([]);
   // final imgList = RxList<ImageInfoModel>([]);
 
   /// To scan the documents.
@@ -138,6 +140,26 @@ class ImagesController extends GetxController {
     klog("PDF saved at: $pdfFile");
 
     return pdfFile;
+  }
+
+  /// To add PDF in list
+  Future<String?> addPDFInList(
+      {required List<ImageInfoModel> imgInfoList}) async {
+    final pdfPath =
+        await Base.imagesController.generatePDFWithImage(imgInfoList);
+
+    final pdf = PdfInfoModel(
+      pdfId: getUniqueId(),
+      pdfName: 'ScanPro ${DateTime.now().microsecondsSinceEpoch}',
+      pdfPath: pdfPath,
+      dateTime: DateTime.now(),
+    );
+
+    pdfList.add(pdf);
+
+    await Base.isarService.pdfDataPutInIsarDB(pdf);
+    klog(pdfList.length);
+    return pdfPath;
   }
 
   /// To open the PDF file

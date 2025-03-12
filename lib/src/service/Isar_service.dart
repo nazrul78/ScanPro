@@ -4,6 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:scan_pro/src/helpers/k_log.dart';
 import 'package:scan_pro/src/helpers/kerror.dart';
 import 'package:scan_pro/src/models.dart/images_model.dart';
+import 'package:scan_pro/src/models.dart/pdf_info_model.dart';
 import 'package:scan_pro/src/models.dart/user.dart';
 
 import '../base/base.dart';
@@ -21,10 +22,7 @@ class IsarService extends GetxService {
   final List<CollectionSchema<Object>> schemaList = [
     UserSchema,
     ImagesModelSchema,
-    // TvDetailsModelSchema,
-    // PlaylistsModelSchema,
-    // DownloadModelSchema,
-    // SettingsModelSchema,
+    PdfInfoModelSchema,
   ];
 
   /// Stream to watch changes in the `DownloadModel` collection
@@ -131,6 +129,15 @@ class IsarService extends GetxService {
     // }
 
     klog('Total:' '${imageList.length}');
+  }
+
+  /// To save PDF info in Isar DB
+  Future<void> pdfDataPutInIsarDB(PdfInfoModel pdf) async {
+    await put<PdfInfoModel>(pdf);
+
+    final pdfs = await isar.pdfInfoModels.count();
+    // final users2 = isar.collection<User>();
+    klog('Count:' '$pdfs');
   }
 
   // Future<void> imgDeleteFromAppDir(int id) async {
