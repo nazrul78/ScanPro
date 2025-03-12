@@ -283,8 +283,7 @@ class HomePage extends StatelessWidget {
                                             'Image path ${item.images!.first.imagePath}');
                                         final pdfPath = await Base
                                             .imagesController
-                                            .generatePDFWithImage(
-                                                item.images!.first.imagePath!);
+                                            .generatePDFWithImage(item.images!);
                                         await Base.imagesController
                                             .openGeneratedPDF(pdfPath!);
                                         // Get.to(PdfViewPage());

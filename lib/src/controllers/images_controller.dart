@@ -92,33 +92,37 @@ class ImagesController extends GetxController {
   }
 
   /// To generate PDF
-  Future<String?> generatePDFWithImage(String imgPath) async {
+  Future<String?> generatePDFWithImage(List<ImageInfoModel> imgInfo) async {
     final pdf = pw.Document();
 
     // Get the image file from the app directory
     // final directory = await getApplicationDocumentsDirectory();
     // final imagePath = File('${directory.path}/my_image.jpg');
-    final imagePath = File(imgPath);
+    // final imagePath = File(imgPath);
 
-    if (!await imagePath.exists()) {
-      klog("Image not found!");
-      return null;
+    // if (!await imagePath.exists()) {
+    //   klog("Image not found!");
+    //   return null;
+    // }
+
+    for (var item in imgInfo) {
+      final imagePath = File(item.imagePath!);
+
+      // Convert image to bytes
+      final Uint8List imageBytes = await imagePath.readAsBytes();
+      final pw.MemoryImage pdfImage = pw.MemoryImage(imageBytes);
+
+      // Add image to PDF
+      pdf.addPage(
+        pw.Page(
+          build: (pw.Context context) {
+            return pw.Center(
+              child: pw.Image(pdfImage), // Adding image to PDF
+            );
+          },
+        ),
+      );
     }
-
-    // Convert image to bytes
-    final Uint8List imageBytes = await imagePath.readAsBytes();
-    final pw.MemoryImage pdfImage = pw.MemoryImage(imageBytes);
-
-    // Add image to PDF
-    pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) {
-          return pw.Center(
-            child: pw.Image(pdfImage), // Adding image to PDF
-          );
-        },
-      ),
-    );
 
     // Save PDF to file
     // final pdfFile = File('${directory.path}/generated.pdf');
