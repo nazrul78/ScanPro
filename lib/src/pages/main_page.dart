@@ -55,6 +55,7 @@ class MainPage extends StatelessWidget {
         bottomNavigationBar: Obx(
           () => NavigationBar(
             onDestinationSelected: (int index) async {
+              Base.mainPageController.currentPageIndex.value = index;
               if (index == 0) {
                 Base.mainPageController.currentPageIndex.value = index;
                 log('${Base.mainPageController.currentPageIndex.value}');
@@ -85,7 +86,7 @@ class MainPage extends StatelessWidget {
                 log('${await r.length}' + 'lenght');
               } else if (index == 1) {
                 // await Base.isarService.isarInit();
-                await Base.isarService.init();
+                // await Base.isarService.init();
               } else if (index == 2) {
                 // await Base.isarService.isarPutTest();
                 await Base.isarService.isarGetTest();

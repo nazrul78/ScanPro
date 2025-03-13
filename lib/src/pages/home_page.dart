@@ -207,6 +207,7 @@ class HomePage extends StatelessWidget {
                         itemCount: Base.imagesController.imgList.length,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
+                        physics: ScrollPhysics(parent: BouncingScrollPhysics()),
                         itemBuilder: (BuildContext context, int index) {
                           final item = Base.imagesController.imgList[index];
                           return Column(
