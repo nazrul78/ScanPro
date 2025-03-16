@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:scan_pro/src/base/base.dart';
 import 'package:scan_pro/src/config/app_theme.dart';
+import 'package:scan_pro/src/helpers/utility.dart';
 
 class DocumentPage extends StatefulWidget {
   const DocumentPage({super.key});
@@ -22,12 +24,12 @@ class _DocumentPageState extends State<DocumentPage> {
       body: ListView.builder(
           padding: const EdgeInsets.fromLTRB(10, 25, 10, 0),
           physics: ScrollPhysics(parent: BouncingScrollPhysics()),
-          // itemCount: Base.imagesController.imgList.length,
-          itemCount: 10,
+          itemCount: Base.imagesController.pdfList.length,
+          // itemCount: 10,
           shrinkWrap: true,
           scrollDirection: Axis.vertical,
           itemBuilder: (BuildContext context, int index) {
-            //  final item = Base.imagesController.imgList[index];
+            final item = Base.imagesController.pdfList[index];
             return Column(
               children: [
                 ListTile(
@@ -56,13 +58,13 @@ class _DocumentPageState extends State<DocumentPage> {
                   //   ),
                   // ),
                   title: Text(
-                    'ScanPro 29-01-2025',
-                    // item.name!,
+                    //'ScanPro 29-01-2025',
+                    item.pdfName!,
                     style: TextStyle(color: Colors.white),
                   ),
                   subtitle: Text(
-                    '2025-01-29 14:13',
-                    //  Utility.formatDateTimeIn12Hour(item.dateTime!)!,
+                    // '2025-01-29 14:13',
+                    Utility.formatDateTimeIn12Hour(item.dateTime!)!,
                     style: TextStyle(color: Colors.grey, fontSize: 12),
                   ),
                   trailing: InkWell(
@@ -95,7 +97,7 @@ class _DocumentPageState extends State<DocumentPage> {
                             backgroundColor: Colors.blueGrey[800]),
                         onPressed: () async {
                           // klog('Pressed PDF');
-                          // klog('Image path ${item.images!.first.imagePath}');
+                          // klog('Image path ${item.pdfPath!}');
                           // // final pdfPath = await Base
                           // //     .imagesController
                           // //     .generatePDFWithImage(item.images!);
@@ -115,8 +117,11 @@ class _DocumentPageState extends State<DocumentPage> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blueGrey[800]),
-                        onPressed: () {
+                        onPressed: () async {
                           //  Get.to(ImageViewPage(pictures: item.images!));
+
+                          await Base.imagesController
+                              .openGeneratedPDF(item.pdfPath!);
                         },
                         child:
                             Text('View', style: TextStyle(color: Colors.white)),
